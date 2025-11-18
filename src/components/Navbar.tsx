@@ -1,19 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  const menuItems = [
-    { name: "Services", href: "#services" },
-    { name: "Industries", href: "#industries" },
-    { name: "Case Studies", href: "#case-studies" },
-    { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" },
-  ];
+  useEffect(() => {
+    const onScroll = () => {
+      if (window.scrollY > 80) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <nav className="w-full fixed top-0 bg-white/80 backdrop-blur-md shadow-sm z-50">
-      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+    <nav
+      className={`
+        fixed top-0 left-0 w-full z-50 transition-all duration-300
+        ${isScrolled ? "bg-white/80 backdrop-blur-md shadow-lg" : "bg-transparent"}
+      `}
+    >
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
         {/* Logo */}
         <div className="text-xl font-bold text-blue-600">
@@ -22,36 +32,13 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-8 text-gray-700 font-medium">
-          {menuItems.map((item) => (
-            <li key={item.name}>
-              <a href={item.href} className="hover:text-blue-600 transition">
-                {item.name}
-              </a>
-            </li>
-          ))}
+          <li><a href="#services" className="hover:text-blue-600">Services</a></li>
+          <li><a href="#industries" className="hover:text-blue-600">Industries</a></li>
+          <li><a href="#case-studies" className="hover:text-blue-600">Case Studies</a></li>
+          <li><a href="#about" className="hover:text-blue-600">About</a></li>
+          <li><a href="#contact" className="hover:text-blue-600">Contact</a></li>
         </ul>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-gray-700"
-          onClick={() => setOpen(!open)}
-        >
-          ☰
-        </button>
       </div>
-
-      {/* Mobile Menu */}
-      {open && (
-        <ul className="md:hidden bg-white shadow-md px-6 py-4 space-y-4 text-gray-700 font-medium">
-          {menuItems.map((item) => (
-            <li key={item.name}>
-              <a href={item.href} className="block">
-                {item.name}
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
     </nav>
   );
 }
