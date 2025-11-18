@@ -15,58 +15,64 @@ export default function Navbar() {
     <nav
       className={`
         fixed top-0 left-0 w-full z-50 transition-all duration-300
-        ${isScrolled ? "bg-white/90 backdrop-blur-md shadow-md" : "bg-transparent"}
+        ${
+          isScrolled
+            ? "bg-[#0e141f]/60 backdrop-blur-xl border-b border-white/10"
+            : "bg-transparent"
+        }
       `}
     >
-      {/* Use MetaFyAI-style grid columns: 1fr / 2fr / 1fr */}
+      {/* 3-column MetaFyAI layout */}
       <div className="max-w-7xl mx-auto px-8 py-4 grid grid-cols-[1fr,2fr,1fr] items-center">
 
-        {/* LEFT — LOGO */}
-        <div
-          className={`
-            text-xl font-semibold transition-all duration-300 
-            ${isScrolled ? "text-gray-900" : "text-white"}
-          `}
-        >
+        {/* LEFT — LOGO (always white) */}
+        <div className="text-xl font-semibold text-white transition-all duration-300">
           Xpertize Tech AI
         </div>
 
-        {/* CENTER — NAVIGATION */}
+        {/* CENTER — NAVIGATION (always white text) */}
         <ul
-          className={`
+          className="
             hidden md:flex justify-center gap-12 
             text-sm font-medium tracking-wide whitespace-nowrap
-            transition-all duration-300
-            ${isScrolled ? "text-gray-900" : "text-white/90"}
-          `}
+            text-white/90 transition-all duration-300
+          "
         >
           <li>
-            <a href="#services" className="hover:text-blue-500 transition-colors">Services</a>
+            <a href="#services" className="hover:text-blue-400 transition-colors">
+              Services
+            </a>
           </li>
 
           <li>
-            <a href="#industries" className="hover:text-blue-500 transition-colors">Industries</a>
+            <a href="#industries" className="hover:text-blue-400 transition-colors">
+              Industries
+            </a>
           </li>
 
           <li>
-            <a href="#case-studies" className="hover:text-blue-500 transition-colors">Case Studies</a>
+            <a href="#case-studies" className="hover:text-blue-400 transition-colors">
+              Case Studies
+            </a>
           </li>
 
           <li>
-            <a href="#about" className="hover:text-blue-500 transition-colors">About</a>
+            <a href="#about" className="hover:text-blue-400 transition-colors">
+              About
+            </a>
           </li>
 
           <li>
-            <a href="#contact" className="hover:text-blue-500 transition-colors">Contact</a>
+            <a href="#contact" className="hover:text-blue-400 transition-colors">
+              Contact
+            </a>
           </li>
         </ul>
 
-        {/* RIGHT — ACTION ZONE (CTA / Login in future) */}
-        <div className="hidden md:flex justify-end gap-6 items-center">
-          {/* Placeholder for future CTA buttons like MetaFyAI */}
-          {/* Example: Get Started / Sign In (if needed later) */}
+        {/* RIGHT — ACTIONS (optional future buttons) */}
+        <div className="hidden md:flex justify-end items-center gap-6 text-white">
+          {/* Empty for now — CTA buttons will go here later */}
         </div>
-
       </div>
     </nav>
   );
