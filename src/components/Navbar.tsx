@@ -5,7 +5,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => {
-      if (window.scrollY > 80) {
+      if (window.scrollY > 60) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -20,23 +20,73 @@ export default function Navbar() {
     <nav
       className={`
         fixed top-0 left-0 w-full z-50 transition-all duration-300
-        ${isScrolled ? "bg-white/80 backdrop-blur-md shadow-lg" : "bg-transparent"}
+        ${isScrolled 
+          ? "bg-white/90 backdrop-blur-md shadow-md" 
+          : "bg-transparent"
+        }
       `}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
 
-        {/* Logo */}
-        <div className="text-xl font-bold text-blue-600">
+        {/* LOGO */}
+        <div className={`
+          text-xl font-semibold transition-all duration-300
+          ${isScrolled ? "text-gray-900" : "text-white"}
+        `}>
           Xpertize Tech AI
         </div>
 
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-8 text-gray-700 font-medium">
-          <li><a href="#services" className="hover:text-blue-600">Services</a></li>
-          <li><a href="#industries" className="hover:text-blue-600">Industries</a></li>
-          <li><a href="#case-studies" className="hover:text-blue-600">Case Studies</a></li>
-          <li><a href="#about" className="hover:text-blue-600">About</a></li>
-          <li><a href="#contact" className="hover:text-blue-600">Contact</a></li>
+        {/* NAV ITEMS */}
+        <ul
+          className={`
+            hidden md:flex gap-10 text-sm font-medium tracking-wide transition-all duration-300
+            ${isScrolled ? "text-gray-800" : "text-white/90"}
+          `}
+        >
+          <li>
+            <a
+              href="#services"
+              className="hover:text-blue-500 transition-colors duration-200"
+            >
+              Services
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#industries"
+              className="hover:text-blue-500 transition-colors duration-200"
+            >
+              Industries
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#case-studies"
+              className="hover:text-blue-500 transition-colors duration-200"
+            >
+              Case Studies
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#about"
+              className="hover:text-blue-500 transition-colors duration-200"
+            >
+              About
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#contact"
+              className="hover:text-blue-500 transition-colors duration-200"
+            >
+              Contact
+            </a>
+          </li>
         </ul>
       </div>
     </nav>
